@@ -1,10 +1,10 @@
 # AAES Toolbox
 A collection of MATLAB scripts for simulating active acoustic enhancement systems.
 
-Requires AKtools available from https://github.com/f-brinkmann/AKtools (not necessary if you already have an RIR dataset)
+Requires [AKtools](https://github.com/f-brinkmann/AKtools) (not necessary if you already have an RIR dataset)
 
 ## Review Paper Simulations Branch
-The branch ```review-simulations``` provides scripts and audio examples to recreate the simulations from the paper "Active Acoustic Enhancement Systems - A Review and Simulations" (link to follow).
+The branch ```review-simulations``` provides scripts and audio examples to recreate the simulations from the paper "Active Acoustic Enhancement Systems - A Review and Simulations" (link to follow). See the [README](https://github.com/wjcassidy/AAESToolbox/blob/review-simulations/Active%20Acoustics%20Review/README.md) for more information.
 
 ## ```AAESSimulator.m```
 
