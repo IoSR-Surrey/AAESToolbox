@@ -20,8 +20,12 @@ function t30 = FindT30(ir, fs, band_centre, bandwidth_mode)
     end
 
     sampling_period = 1 / fs;
-    minus_5_time = minus_5_index * sampling_period;
-    minus_35_time = minus_35_index * sampling_period;
-    gradient = -30 / (minus_35_time - minus_5_time);
+
+    index_range = minus_5_index:minus_35_index;
+    energy = edc_dB(index_range);
+    times = double(index_range) * sampling_period;
+
+    gradient = transpose(times)\transpose(energy);
+
     t30 = -60 / gradient;
 end

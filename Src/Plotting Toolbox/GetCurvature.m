@@ -1,6 +1,6 @@
 function curvature = GetCurvature(ir, sample_rate)
-    start_early_dB = -10;
-    end_early_dB = -15;
+    start_early_dB = -5;
+    end_early_dB = -10;
     start_late_dB = -30;
     end_late_dB = -50;
 
@@ -23,7 +23,7 @@ function curvature = GetCurvature(ir, sample_rate)
     m_late = (end_late_dB - start_late_dB) / (end_late_time - start_late_time);
 
     % return difference in gradients - 1
-    curvature = abs(m_late / m_early - 1) * 100;
+    curvature = (1 - m_late / m_early) * 100;
 end
 
 function [energy_decay_dB, time_values_seconds] = GetEnergyDecay(ir, sample_rate)
