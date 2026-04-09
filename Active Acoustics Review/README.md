@@ -1,7 +1,7 @@
 # Active Acoustics Review Simulations
-This directory provides the means to generate the AAES simulations featured in the paper "Active Acoustic Enhancement Systems - A Review and Simulations" (link to follow).
+This directory provides the means to reproduce the AAES simulations featured in the review paper "Active Acoustic Enhancement Systems - A Review" (link to follow).
 
-Requires my fork of AKtools from here: https://github.com/willcassidy00454/AKtools-FreqIndepSH, and the fdnToolbox from here: https://github.com/SebastianJiroSchlecht/fdnToolbox.
+Requires [this fork](https://github.com/willcassidy00454/AKtools-FreqIndepSH) of AKtools to handle directional sources/receivers, and the [fdnToolbox](https://github.com/SebastianJiroSchlecht/fdnToolbox) for generating time-varying reverberators.
 
 The general pipeline is as follows:
 - Generate the reverberators used for the LTI conditions with ```GenerateReverberators.m```.
