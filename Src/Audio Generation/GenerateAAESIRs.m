@@ -18,7 +18,7 @@ function GenerateAAESIRs(rir_directory, reverberator_directory, output_directory
     K = num_aaes_loudspeakers; % Number of AAES loudspeakers
     L = num_aaes_mics; % Number of AAES microphones
 
-    output_length_factor = 1.5; %2.5 for plots % Length of output IRs as a factor of the src-rec RIR length
+    output_length_factor = 2.5; %2.5 for plots % Length of output IRs as a factor of the src-rec RIR length
 
     [example_ir, sample_rate] = audioread(rir_directory + "E_R1_S1.wav");
     passive_ir_length = size(example_ir, 1); % Use the first IR of the set to determine IR lengths
@@ -91,23 +91,23 @@ function GenerateAAESIRs(rir_directory, reverberator_directory, output_directory
             %% Set loop gain relative to the gain before instability
             
             % mu = AAES feedback loop gain
-            mu = power(10, (gbi_dB + loop_gain_dB) / 20);
+            loop_gain_linear = power(10, (gbi_dB + loop_gain_dB) / 20);
             
             %% Compute output
-            
-            % V = 1xM Outputs
-            V = zeros(M, 1, num_bins);
-            
-            % Compute output one frequency bin at a time (element-wise)
-            for bin = 1:num_bins
-                % V = E U
-                %   + mu F (I - mu X H)^-1 X G U
-                V(:, :, bin) = E(:, :, bin, spherical_harmonic) * U(:, :, bin) ...
-                             + mu .* F(:, :, bin, spherical_harmonic) * inv(eye(K) - mu .* X(:, :, bin) * H(:, :, bin)) * X(:, :, bin) * G(:, :, bin) * U(:, :, bin);
+
+            % Identity for all bins
+            I = zeros(num_aaes_loudspeakers, num_aaes_loudspeakers, num_bins);
+            for bin_index = 1:num_bins
+                I(:, :, bin_index) = eye(num_aaes_loudspeakers); % [freq bin, M, M]
             end
+    
+            closed_loop_denominator = I - loop_gain_linear * pagemtimes(X, H);  % [freq bin, M, M]
+            H_X_H_SM = pagemtimes(X, G);
+            closed_loop_H_X_H_SM = pagemldivide(closed_loop_denominator, H_X_H_SM);  % inverse(closed_loop_denominator) @ H_X @ H_SM
+            receiver_freq_response = E(:, :, :, spherical_harmonic) + loop_gain_linear * pagemtimes(F(:, :, :, spherical_harmonic), closed_loop_H_X_H_SM);
             
             % Convert receiver transfer function back to the time domain
-            output_signal = ifft(squeeze(V(1, 1, :)));
+            output_signal = ifft(squeeze(receiver_freq_response(1, 1, :)));
     
             
             %% Save output
