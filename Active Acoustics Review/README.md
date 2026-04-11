@@ -20,6 +20,8 @@ NB: In ```GenerateRIRsForReviewPaper.m```, the ```condition_index``` refers to t
 
 The final RIRs used for the paper figures can be found in the folder ```AAES Receiver RIRs/```, labelled according to the AAES Index in Table 1 below. Due to the large amount of data, intermediate audio files have not been included, but these can be generated locally using the provided scripts.
 
+Once the simulations have been generated using ```Active Acoustics Review/Src/SimulateAAESForReviewPaper.m```, use ```Src/Plotting Toolbox/PlotRIR.m``` to reproduce the figures of the review paper.
+
 ## Table 1: LTI Simulation Conditions
 This table presents the arguments for each time-invariant simulation, using the frequency domain model. The AAES Index column corresponds to the labels in the output directory (```AAES Receiver RIRs/```).
 
