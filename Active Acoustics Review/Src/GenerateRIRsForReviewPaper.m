@@ -15,9 +15,9 @@ rotations_dir = "Active Acoustics Review/Rotations/";
 directivities_dir = "Active Acoustics Review/Directivities/";
 output_dir = "Active Acoustics Review/Generated AAES RIRs/";
 
-num_conditions = 1; % condition 8 is 1 with EQ
+num_conditions = 4; % condition 5 is 1 with EQ
 
-for condition_index = [9 10]
+parfor condition_index = 1:4
     GenerateRIRs(condition_index, absorptions_dir, coords_dir, rotations_dir, directivities_dir, output_dir, sample_rate, bit_depth);
 end
 

@@ -4,7 +4,7 @@ reverberator_base_dir = "Active Acoustics Review/Reverberators/";
 output_base_dir = "Active Acoustics Review/AAES Receiver RIRs/";
 bit_depth = 32;
 
-conditions = readmatrix("Active Acoustics Review/Src/SimulationConditionsFinalOnly.dat");
+conditions = readmatrix("Active Acoustics Review/Src/SimulationConditions.dat");
 conditions_to_simulate = 1:size(conditions, 1);
 
 for aaes_index = conditions_to_simulate

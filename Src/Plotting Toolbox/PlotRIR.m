@@ -52,7 +52,7 @@ rir_base_dir = "Active Acoustics Review/Generated AAES RIRs/";
 reverberator_base_dir = "Active Acoustics Review/Reverberators/";
 bit_depth = 32;
 
-conditions = readmatrix("Active Acoustics Review/Src/SimulationConditionsFinalOnly.dat");
+conditions = readmatrix("Active Acoustics Review/Src/SimulationConditions.dat");
 aaes_indices = [2,7];
 
 for aaes_index = aaes_indices
