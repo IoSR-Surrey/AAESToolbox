@@ -29,19 +29,19 @@ This table presents the arguments for each time-invariant simulation, using the 
 |------|---------------|------------|----------|--------|------------|--------------|-----------|----|
 | 7 | 1 | 1 | 16 | 16 | Base | 1: Identity | -4 dB | None |
 | 7 | 1 | 2 | 16 | 16 | Base | 1: Identity | -2 dB | None |
-| 8 | 1 | 3 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 0.5 | -68 dBFS | None |
-| 8 | 1 | 4 | 16 | 16 | Base | 6: LTI FDN; RT Ratio = 1.0 | -68 dBFS | None |
-| 8 | 1 | 5 | 16 | 16 | Base | 7: LTI FDN; RT Ratio = 1.5 | -68 dBFS | None |
-| 8 | 1 | 6 | 16 | 16 | Base | 8: LTI FDN; RT Ratio = 2.0 | -68 dBFS | None |
-| 10 | 8 (1 with EQ) | 7 | 16 | 16 | Base | 1: Identity | -5 dB | Two biquads on each feedback element |
-| 10 | 8 (1 with EQ) | 8 | 16 | 16 | Base | 1: Identity | -2 dB | Two biquads on each feedback element |
-| 11 | 1 | 9 | 16 | 16 | Base | 14: Hadamard | -5 dB | None |
-| 11 | 1 | 10 | 16 | 16 | Base | 15 (8?): LTI FDN; RT Ratio = 2.0 | -5 dB | None |
-| 11 | 12 | 11 | 16 | 16 | Base -50% | 14: Hadamard | -5 dB | None |
-| 11 | 12 | 12 | 16 | 16 | Base -50% | 16: LTI FDN; RT Ratio = 2.0 (w.r.t. room 12) | -5 dB | None |
-| 12 | 1 | 13-31 | 16 | 16 | Base | 14: Hadamard | -6 to -1.5 dB | None |
-| 12 | 12 | 32-50 | 16 | 16 | Base -50% | 14: Hadamard | -6 to -1.5 dB | None |
-| 13 | 9 | 51 | 8 (cardioid) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
-| 13 | 10 | 52 | 8 (omni) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
+| 8 | 1 | 3 | 16 | 16 | Base | 2: LTI FDN; RT Ratio = 0.5 | -68 dBFS | None |
+| 8 | 1 | 4 | 16 | 16 | Base | 3: LTI FDN; RT Ratio = 1.0 | -68 dBFS | None |
+| 8 | 1 | 5 | 16 | 16 | Base | 4: LTI FDN; RT Ratio = 1.5 | -68 dBFS | None |
+| 8 | 1 | 6 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 2.0 | -68 dBFS | None |
+| 10 | 5 (1 with EQ) | 7 | 16 | 16 | Base | 1: Identity | -5 dB | Two biquads on each feedback element |
+| 10 | 5 (1 with EQ) | 8 | 16 | 16 | Base | 1: Identity | -2 dB | Two biquads on each feedback element |
+| 11 | 1 | 9 | 16 | 16 | Base | 6: Hadamard | -5 dB | None |
+| 11 | 1 | 10 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 2.0 | -5 dB | None |
+| 11 | 4 | 11 | 16 | 16 | Base -50% | 6: Hadamard | -5 dB | None |
+| 11 | 4 | 12 | 16 | 16 | Base -50% | 7: LTI FDN; RT Ratio = 2.0 (w.r.t. Room 4) | -5 dB | None |
+| 12 | 1 | 13-31 | 16 | 16 | Base | 6: Hadamard | -6 to -1.5 dB | None |
+| 12 | 4 | 32-50 | 16 | 16 | Base -50% | 6: Hadamard | -6 to -1.5 dB | None |
+| 13 | 2 | 51 | 8 (cardioid) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
+| 13 | 3 | 52 | 8 (omni) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
 
 (time-varying simulations to be added)
