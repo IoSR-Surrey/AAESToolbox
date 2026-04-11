@@ -20,13 +20,26 @@ NB: In ```GenerateRIRsForReviewPaper.m```, the ```condition_index``` refers to t
 
 The final RIRs used for the paper figures can be found in the folder ```AAES Receiver RIRs/```, labelled according to the AAES Index in Table 1 below. Due to the large amount of data, intermediate audio files have not been included, but these can be generated locally using the provided scripts.
 
-## Table 1: Simulation Conditions
-This table presents the arguments for each simulation parameter. The simulation ID corresponds to the labels in the output directory (```AAES Receiver RIRs/```).
+## Table 1: LTI Simulation Conditions
+This table presents the arguments for each time-invariant simulation, using the frequency domain model. The AAES Index column corresponds to the labels in the output directory (```AAES Receiver RIRs/```).
 
-| RIR Set Index | AAES Index | Mic Layout   | LS Layout | Absorption | Reverberator | Loop Gain | EQ |
-|---------------|------------|--------------|-----------|------------|--------------|-----------|----|
-| 1 | 1 | 16ch (regen) | 16ch | Reference | 1: 16x16 Identity | -5 dB | None |
-| 2 | 2 | 4ch (in-line) | 16ch | Reference | 8: 16x4 LTI FDN RT Ratio = 2 | -16 dB | None |
-| 3 | 3 | 16ch (hybrid) | 16ch | Reference | 4: 16x16 Hybrid (Rev 8 for left-most 16x4, rest identity) | -5 dB | None |
+| Fig. | RIR Set Index | AAES Index | Num Mics | Num LS | Absorption | Reverberator | Loop Gain | EQ |
+|------|---------------|------------|----------|--------|------------|--------------|-----------|----|
+| 7 | 1 | 1 | 16 | 16 | Base | 1: Identity | -4 dB | None |
+| 7 | 1 | 2 | 16 | 16 | Base | 1: Identity | -2 dB | None |
+| 8 | 1 | 3 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 0.5 | -68 dBFS | None |
+| 8 | 1 | 4 | 16 | 16 | Base | 6: LTI FDN; RT Ratio = 1.0 | -68 dBFS | None |
+| 8 | 1 | 5 | 16 | 16 | Base | 7: LTI FDN; RT Ratio = 1.5 | -68 dBFS | None |
+| 8 | 1 | 6 | 16 | 16 | Base | 8: LTI FDN; RT Ratio = 2.0 | -68 dBFS | None |
+| 10 | 8 (1 with EQ) | 7 | 16 | 16 | Base | 1: Identity | -5 dB | Two biquads on each feedback element |
+| 10 | 8 (1 with EQ) | 8 | 16 | 16 | Base | 1: Identity | -2 dB | Two biquads on each feedback element |
+| 11 | 1 | 9 | 16 | 16 | Base | 14: Hadamard | -5 dB | None |
+| 11 | 1 | 10 | 16 | 16 | Base | 15 (8?): LTI FDN; RT Ratio = 2.0 | -5 dB | None |
+| 11 | 12 | 11 | 16 | 16 | Base -50% | 14: Hadamard | -5 dB | None |
+| 11 | 12 | 12 | 16 | 16 | Base -50% | 16: LTI FDN; RT Ratio = 2.0 (w.r.t. room 12) | -5 dB | None |
+| 12 | 1 | 13 | 16 | 16 | Base | 14: Hadamard | -6 to -1.5 dB | None |
+| 12 | 12 | 14 | 16 | 16 | Base -50% | 14: Hadamard | -6 to -1.5 dB | None |
+| 13 | 9 | 15 | 8 (cardioid) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
+| 13 | 10 | 16 | 8 (omni) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
 
-(more rows coming soon)
+(time-varying simulations to be added)
