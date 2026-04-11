@@ -1,29 +1,19 @@
 # Active Acoustics Review Simulations
-This directory provides the means to reproduce the AAES simulations featured in the review paper "Active Acoustic Enhancement Systems - A Review" (link to follow).
+This directory provides the means to reproduce the AAES simulations featured in the review paper "Active Acoustic Enhancement Systems - A Review" (link to follow). Due to the large amount of data, intermediate audio files have not been included in this repository, but these can be generated locally using the workflow detailed below.
 
-Requires [this fork](https://github.com/willcassidy00454/AKtools-FreqIndepSH) of AKtools to handle directional sources/receivers, and the [fdnToolbox](https://github.com/SebastianJiroSchlecht/fdnToolbox) for generating time-varying reverberators.
+Requires [this fork](https://github.com/willcassidy00454/AKtools-FreqIndepSH) of AKtools to handle directional sources/receivers, and the [fdnToolbox](https://github.com/SebastianJiroSchlecht/fdnToolbox) for generating reverberators.
 
 The general pipeline is as follows:
-- Generate the reverberators used for the LTI conditions with ```GenerateReverberators.m```.
-- Generate an IR for every loudspeaker-microphone pair, including the room source and audience receiver. Uses AKtools via ```GenerateRIRsForReviewPaper.m```.
-- Apply equalisation to the H matrix if necessary with ```EqualiseHMatrix.m```.
-- Run the AAES simulation with ```SimulateAAESForReviewPaper.m``` which saves into ```AAES Receiver RIRs/```. For the LTV reverberator conditions, a time-domain model is used instead; this will be added soon.
-- Explore the simulated RIRs using ```PlotRIR.m``` (found in ```AAESToolbox/Src/Plotting Toolbox/```).
+- Run ```GenerateReverberators.m``` to generate the reverberators used for the LTI conditions.
+- Run ```GenerateRIRsForReviewPaper.m``` to generate an RIR for every loudspeaker-microphone pair, including room sources and audience receivers. Requires an AKtools fork as mentioned above.
+- Run ```EqualiseHMatrix.m``` to apply equalisation to the H matrix of Room Condition 1 (becomes Room Condition 5).
+- Run ```SimulateAAESForReviewPaper.m``` to simulate each AAES condition, saving the results into ```AAES Receiver RIRs/```. For the LTV reverberator conditions, a time-domain model is used instead; this will be added soon.
+- Use ```PlotRIR.m``` to reproduce the figures of the review paper, or explore the other plotting tools found in ```AAESToolbox/Src/Plotting Toolbox/```.
 
-Each stage can be run for select rooms or conditions, e.g.:
-```
-for condition_index = [7 9 10]
-    GenerateRIRs(...);
-end
-```
-NB: In ```GenerateRIRsForReviewPaper.m```, the ```condition_index``` refers to the RIR Set Index in Table 1, whereas in ```SimulateAAESForReviewPaper.m```, the ```row``` refers to the AAES Index. This is because multiple AAES simulations may use the same RIR set, for example when comparing different loop gains in the same configuration.
-
-The final RIRs used for the paper figures can be found in the folder ```AAES Receiver RIRs/```, labelled according to the AAES Index in Table 1 below. Due to the large amount of data, intermediate audio files have not been included, but these can be generated locally using the provided scripts.
-
-Once the simulations have been generated using ```Active Acoustics Review/Src/SimulateAAESForReviewPaper.m```, use ```Src/Plotting Toolbox/PlotRIR.m``` to reproduce the figures of the review paper.
+```GenerateRIRsForReviewPaper.m``` and ```SimulateAAESForReviewPaper.m``` refer to an ```rir_set_index``` and ```aaes_index```, respectively. Table 1 (below) details the parameter arguments for these conditions.
 
 ## Table 1: LTI Simulation Conditions
-This table presents the arguments for each time-invariant simulation, using the frequency domain model. The AAES Index column corresponds to the labels in the output directory (```AAES Receiver RIRs/```).
+This table presents the arguments for each time-invariant simulation, using the frequency domain model.
 
 | Fig. | RIR Set Index | AAES Index | Num Mics | Num LS | Absorption | Reverberator | Loop Gain | EQ |
 |------|---------------|------------|----------|--------|------------|--------------|-----------|----|
