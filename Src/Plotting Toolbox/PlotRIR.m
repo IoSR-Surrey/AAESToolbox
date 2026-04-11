@@ -78,7 +78,7 @@ end
 
 %% Figure 11 (absorption EDC demo)
 plot_length_sec = 4;
-room_conditions = [1,12]; % % % % % This needs changing to 1:2 after renaming the room conditions
+room_conditions = [1,4];
 aaes_conditions = 9:12;
 aaes_plot_index = 1;
 line_styles = ["-", ":"];
@@ -127,10 +127,10 @@ SetFigureSize("single")
 % IR in the omni condition. This is then used to determine the DRR of the
 % cardioid condition, since the direct signal will be attenuated so the max
 % may not indicate the location of the direct signal.
-[~, delay_matrix] = GetMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/", "H", 8, 8);
+[~, delay_matrix] = GetMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 3/", "H", 8, 8);
 
-PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/", "H", 8, 8, "Omni Mics");
-PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 9/", "H", 8, 8, "Cardioid Mics", delay_matrix);
+PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 3/", "H", 8, 8, "Omni Mics");
+PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 2/", "H", 8, 8, "Cardioid Mics", delay_matrix);
 SetFigureSize("double_horizontal")
 
 figure

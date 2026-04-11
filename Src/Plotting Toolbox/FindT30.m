@@ -25,7 +25,8 @@ function t30 = FindT30(ir, fs, band_centre, bandwidth_mode)
     energy = edc_dB(index_range);
     times = double(index_range) * sampling_period;
 
-    gradient = transpose(times)\transpose(energy);
+    % Find gradient through linear regression
+    gradient = transpose(times) \ transpose(energy);
 
     t30 = -60 / gradient;
 end

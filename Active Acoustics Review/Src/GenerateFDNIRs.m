@@ -56,15 +56,6 @@ function params = create_FDN(params)
     % Delay lines
     params.DelayFilters = feedbackDelay(params.blockSize, params.delays);
 
-    % b_coeffs = ones(32,1,3);
-    % b_coeffs(:,:,1) = 0.05598657205955599;
-    % b_coeffs(:,:,2) = 0.11197314411911198;
-    % b_coeffs(:,:,3) = 0.05598657205955599;
-    % 
-    % a_coeffs = ones(32,1,3);
-    % a_coeffs(:,:,2) = -0.8597696961083905;
-    % a_coeffs(:,:,3) = 0.0837159843466146;
-
     % Absorption filters
     [absorption.b,absorption.a] = onePoleAbsorption(params.RT_DC, params.RT_NY, params.delays, params.fs);
     A = zTF(absorption.b, absorption.a,'isDiagonal', true);
