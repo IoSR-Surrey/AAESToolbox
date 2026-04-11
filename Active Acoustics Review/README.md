@@ -37,9 +37,9 @@ This table presents the arguments for each time-invariant simulation, using the 
 | 11 | 1 | 10 | 16 | 16 | Base | 15 (8?): LTI FDN; RT Ratio = 2.0 | -5 dB | None |
 | 11 | 12 | 11 | 16 | 16 | Base -50% | 14: Hadamard | -5 dB | None |
 | 11 | 12 | 12 | 16 | 16 | Base -50% | 16: LTI FDN; RT Ratio = 2.0 (w.r.t. room 12) | -5 dB | None |
-| 12 | 1 | 13 | 16 | 16 | Base | 14: Hadamard | -6 to -1.5 dB | None |
-| 12 | 12 | 14 | 16 | 16 | Base -50% | 14: Hadamard | -6 to -1.5 dB | None |
-| 13 | 9 | 15 | 8 (cardioid) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
-| 13 | 10 | 16 | 8 (omni) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
+| 12 | 1 | 13-31 | 16 | 16 | Base | 14: Hadamard | -6 to -1.5 dB | None |
+| 12 | 12 | 32-50 | 16 | 16 | Base -50% | 14: Hadamard | -6 to -1.5 dB | None |
+| 13 | 9 | 51 | 8 (cardioid) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
+| 13 | 10 | 52 | 8 (omni) | 8 (cardioid) | Base | 1: Identity | -2 dB | None |
 
 (time-varying simulations to be added)
