@@ -1,488 +1,162 @@
+clear
 
-% octave_cutoff = 1000;
+%% Figure 7 (loop gain demo)
+[ir_passive, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_R1_S1.wav");
+plot_length_sec = 2.5;
+ir = zeros(plot_length_sec * fs, 1);
+ir(1:length(ir_passive)) = ir_passive;
 
-% close all
-
-% hold on
-
-% [ir, fs] = audioread("/Users/willcassidy/Documents/PhD/AAESinMATLAB/Outputs/AAES_RIR_TI.wav");
-
-% [ir, fs] = audioread("/Users/willcassidy/Development/GitHub/AAESToolbox/Active Acoustics Review/AAES Receiver RIRs/AAES Condition 9/ReceiverRIR.wav");
-% 
-% edc_deriv = zeros(7, ceil(length(ir) / 20));
-% edc_deriv(1,:) = GetEDCDerivative(ir, fs, 200, 5);
-% edc_deriv(2,:) = GetEDCDerivative(ir, fs, 400, 5);
-% edc_deriv(3,:) = GetEDCDerivative(ir, fs, 800, 5);
-% edc_deriv(4,:) = GetEDCDerivative(ir, fs, 1600, 5);
-% edc_deriv(5,:) = GetEDCDerivative(ir, fs, 3200, 5);
-% edc_deriv(6,:) = GetEDCDerivative(ir, fs, 6400, 5);
-% edc_deriv(7,:) = GetEDCDerivative(ir, fs, 12800, 5);
-% 
-% plt = waterfall(edc_deriv);
-% zlim([-100 0]);
-% set(plt, 'FaceColor', 'k');
-
-% PlotEnergyDecayRelief(ir, fs);
-
-% PlotSpectrogram(ir, fs);
-
-% PlotSpectrogramsForLoopGains("Active Acoustics Review/AAES Receiver RIRs/Condition 1/", [-50 -4 -2 -0.5 0], 4);
-
-% PlotSpectAndEDCForConditions("Active Acoustics Review/AAES Receiver RIRs/", 1:16, 3);
-% tiledlayout(1,4);
-% nexttile;
-% for i = 14
-%     figure;
-%     PlotEnergyDecayReliefForCondition("Active Acoustics Review/AAES Receiver RIRs/", i);
-% end
-% nexttile;
-% PlotEnergyDecayReliefForCondition("Active Acoustics Review/AAES Receiver RIRs/", 7);
-% nexttile;
-% PlotEnergyDecayReliefForCondition("Active Acoustics Review/AAES Receiver RIRs/", 8);
-% nexttile;
-% PlotEnergyDecayReliefForCondition("Active Acoustics Review/AAES Receiver RIRs/", 9);
-
-
-% figure
-nexttile
-% for i=1:4
-% hold on
-% [ir, fs] = audioread("AbsorbCoeffsTest/ConcertHall.wav");
-% [ir, fs] = audioread("Reverberators/Reverberator 3/X_R1_S1.wav");
-% [irs, fs] = audioread("Audio Data/AAES Receiver RIRs/AAES Room 1 Absorption 1 RT 1 Loop Gain -1 Filter 1 Routing 1/ReceiverRIR.wav");
-% ir = irs(:,4);
-% [ir, fs] = audioread("AAESinMATLAB/Outputs/AAES_Inline_TV_+2.wav");
-% [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/E_R1_S1.wav");
-% % tiledlayout(3,1);
-% hold on
-% [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/AAES Condition 18/ReceiverRIR.wav");
-% ir1 = zeros(48000 * 4, 1);
-% [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_R1_S1.wav");
-% [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/Pilsen.wav");
-
-% disp(FindT30(ir,fs,1000));
-
-% delay_matrix = readmatrix("Active Acoustics Review/Directivities/delay_matrix_room_10.dat");
-PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/", "H", 8, 8, "b. Omni Mics");%, delay_matrix);
-% plot(ir);
-% ir1(1:length(ir)) = ir;
-% disp(mean(ir));
-
-% PlotEDC(ir, fs, false, "-.", 2.5);
-% PlotSpectrogram(ir, fs, 3, true);
-% PlotRTOverFrequency(ir, fs, "1/6 octave");
-
-% PlotEDCDerivative(ir, fs, 3000, 1.8);
-% disp(FindT30(ir, fs, 125));
-% disp(FindT30(ir, fs, 250));
-% disp(FindT30(ir, fs, 500));
-% disp(FindT30(ir, fs, 1000));
-% disp(FindT30(ir, fs, 2000));
-% disp(FindT30(ir, fs, 4000));
-% disp(FindT30(ir, fs, 8000));
-% end
-
-% For single EDC or RT plots:
-set(gcf, "position", [300 300 600 500]);
-
-
-% For triple-stacked figures:
-% set(gcf, "position", [300 0 550 900]);
-
-
-% For triple-horiz figures:
-% set(gcf, "position", [300 0 1120 300]);
-
-
-% For two side-by-side figures:
-% set(gcf,'position',[300,300,1000,400]);
-
-
-% tiledlayout(1,3);
-% nexttile;
-% PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/","H",16,16,"DRR: All Mics, All LS");
-% nexttile;
-% PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 6/","H",8,8,"DRR: Central Omni Mics, Wall LS");
-% nexttile;
-% PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 7/","H",8,8,"DRR: Wall Cardioid Mics, Wall LS");
-
-% [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/Pilsen.wav");
-
-% for rec = 10:19
-% [ir, fs] = audioread("/Users/willcassidy/Documents/PhD/Pilsen/Full_TP_Matrix3/E013_R008_M01.wav");
-% [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_1_1.wav");
-% ir = ir / max(abs(ir));
-% PlotSpectrogram(ir, fs, 1);
-% % end
-% title("Estimated Absorption");
-% figure
-% PlotHeatmapForRouting("AAESDatasetGenerator/Routings/routing_4.dat", 16, 16, true);
-
-% [sine, ~] = audioread("Active Acoustics Review/Sine.wav");
-% [tvrev, ~] = audioread("Active Acoustics Review/TVReverb.wav");
-% [ir, fs] = audioread("Active Acoustics Review/Reverberators/Reverberator 6/X_1_1.wav");
-% PlotSpectrogram(conv(ir,sine(:,1)),fs,10);
-% title("TI");
-
-% sound(conv(ir,sine(:,1)), 48000);
-
-% [ir, fs] = audioread("Active Acoustics Review/Reverberators/Reverberator 9/X_1_1.wav");
-% PlotSpectrogram(conv(ir,sine(:,1)),fs,10);
-% title("TV");
-
-% sound(conv(ir,sine(:,1)), 48000);
-
-% PlotSpectrogram(conv(tvrev,sine(:,1)),fs,10);
-% title("TV");
-
-% sound(conv(tvrev,sine(:,1)), 48000);
-
-% % % Use this for the spherical harmonics test:
-% for plot_idx = 1:9
-%     % figure
-%     % PlotIRs("Active Acoustics Review/Generated AAES RIRs SH Test/Azimuth/", 8, plot_idx);
-%     % set(gcf,'position',[300 * plot_idx, 400, 300, 800]);
-%     PlotSHDirectivity("Active Acoustics Review/Generated AAES RIRs SH Test/Azimuth/", 8, plot_idx, 400);
-% end
-
-% % % Use this for directivity test:
-% for plot_idx = 1:9
-%     nexttile
-%     set(gcf,'position',[300, 400, 300, 800]);
-%     [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Src Directivity Test/E_R1_S"+plot_idx+".wav");
-%     % [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Rec Directivity Test/E_R"+plot_idx+"_S1.wav");
-%     plot(ir);
-%     xlim([0 1000]);
-%     ylim([-0.025 0.025]);
-% end
-
-% oct_filt = octaveFilter(octave_cutoff,"SampleRate",fs);
-% ir = oct_filt(ir);
-
-% ir = ir / max(abs(ir));
-
-% PlotEDC(ir, fs, "-", 10, -50);
-% PlotSpectrogram(ir,fs,5);
-
-function PlotSHDirectivity(read_dir, num_indices, channel_to_plot, trunc_length_samples)
-    irs = zeros(num_indices,trunc_length_samples);
-    maxima = zeros(num_indices);
-    thetas = zeros(num_indices);
-
-    for index = 1:num_indices
-        [ir, ~] = audioread(read_dir + "Src Position "+index+"_R1_S1.wav");
-        irs(index,:) = ir(1:trunc_length_samples, channel_to_plot);
-
-        maxima(index) = max(abs(irs(index,:)),[],"all");
-        thetas(index) = (index - 1) * pi / 4;
-        % plot(irs(index,:));
-        % ylim([-0.5 0.5]);
-    end
-
-    maxima(7) = 2 * maxima(7) / 3;
-    maxima = 2 * maxima;
-
-    nexttile;
-    polarplot(thetas,maxima);
-    rlim([0 1.0])
-    title("Azimuth - Spherical Harmonic "+channel_to_plot)
-end
-
-function PlotIRs(read_dir, num_indexes_to_append, channel_to_plot)
-    tiledlayout(num_indexes_to_append,1);
-
-    for index = 1:num_indexes_to_append
-        nexttile;
-        [ir, ~] = audioread(read_dir + "Src Position " + index + "_R1_S1.wav");
-        % plot (1:length(ir), 20*log10(abs(ir)));
-        plot(ir(:,channel_to_plot));
-        % PlotEDC(ir, 48000);
-        title("Index " + index);
-        xlim([0, 1000]);
-        ylim([-0.5 0.5]);
+for aaes_index = 1:3
+    PlotSpectrogram(ir,fs,plot_length_sec,true);
+    PlotT30Line(ir, fs)
+    if aaes_index < 3
+        [ir, ~] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
     end
 end
 
-function PlotSpectrogramsForLoopGains(read_dir, loop_gains, length_sec)
-    for loop_gain = loop_gains
-        [ir, fs] = audioread(read_dir + "LoopGain[" + loop_gain + "].wav");
-        PlotSpectrogram(ir,fs,length_sec);
-        title("Loop Gain = "+loop_gain+"dB");
+SetFigureSize("triple_vertical")
+
+%% Figure 8 (RT ratio demo)
+[ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_R1_S1.wav");
+plot_length_sec = 2.25;
+line_styles = ["--", "-", ":", "-.", "-"];
+aaes_indices = 3:6;
+octave_band_centre = 1000;
+hold on
+
+for plot_index = 1:5
+    PlotEDC(ir, fs, octave_band_centre, line_styles(plot_index), plot_length_sec);
+    if plot_index < 5
+        aaes_index = aaes_indices(plot_index);
+        [ir, ~] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
     end
 end
 
-function PlotEnergyDecayReliefForCondition(read_dir, condition_index)
-    [ir, fs] = audioread(read_dir + "AAES Condition "+condition_index+"/ReceiverRIR.wav");
-    PlotEnergyDecayRelief(ir,fs);
-    title("Condition "+condition_index);
+%% Figure 9 (time variation demo)
+
+%% Figure 10 (EQ demo with eigenvalues)
+figure
+SetFigureSize("triple_vertical")
+plot_length_sec = 3;
+aaes_indices = [2,7,8];
+
+for aaes_index = aaes_indices
+    [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
+    PlotSpectrogram(ir,fs,plot_length_sec,true);
+    PlotT30Line(ir, fs)
 end
 
-function PlotEnergyDecayRelief(ir,fs)
-    ir_trunc_length = 5;
-    plot_time_length_ratio = ir_trunc_length / (length(ir) / fs);
-    % ir = zeros(ir_trunc_length * fs,1);
-    % 
-    % num_nonzero_samples = min(length(ir_raw), length(ir));
-    % ir(1:num_nonzero_samples) = ir_raw(1:num_nonzero_samples);
+figure
+SetFigureSize("double_vertical")
+rir_base_dir = "Active Acoustics Review/Generated AAES RIRs/";
+reverberator_base_dir = "Active Acoustics Review/Reverberators/";
+bit_depth = 32;
 
-    z_min = -220;
-    [p,f] = pspectrum(ir,fs,"spectrogram","FrequencyLimits",[20 20000],"OverlapPercent",80,"FrequencyResolution", 40,"MinThreshold",z_min);
-    
-    num_freqs_to_plot = 10;
-    [energy_decay, log_f] = calcEDR(p,f,num_freqs_to_plot);
+conditions = readmatrix("Active Acoustics Review/Src/SimulationConditionsFinalOnly.dat");
+aaes_indices = [2,7];
 
-    % surf(energy_decay);
-    plt = waterfall(energy_decay);
-    set(plt, 'FaceColor', 'k');
+for aaes_index = aaes_indices
+    rir_set_index = conditions(aaes_index, 1);
+    num_mics = conditions(aaes_index, 2);
+    num_ls = conditions(aaes_index, 3);
+    rev_index = conditions(aaes_index, 4);
+    loop_gain = conditions(aaes_index, 5);
+    loop_gain_is_relative = conditions(aaes_index, 6);
 
-    freq_step = num_freqs_to_plot / 10;
-    yticks(1:freq_step:num_freqs_to_plot);
-    yticklabels(round(log_f(1:freq_step:num_freqs_to_plot)));
-    ylabel("Frequency / Hz");
-
-    max_time_bins = size(p,2) * plot_time_length_ratio;
-    xticks(1:(max_time_bins/8):max_time_bins);
-    xticklabels(0:(ir_trunc_length/8):ir_trunc_length);
-    xlabel("Time / s");
-    xlim([0 max_time_bins])
-
-    % zticklabels([]);
-    zlabel("Energy / dB");
-
-    view(121, 38); %view (45, 40);% view(114, 8); %
+    GenerateAAESIRs(rir_base_dir + "Room Condition " + rir_set_index + "/", ...
+        reverberator_base_dir + "Reverberator " + rev_index + "/", ...
+        "", ...
+        "", ...
+        loop_gain, ...
+        num_ls, ...
+        num_mics, ...
+        bit_depth, ...
+        true, ...
+        loop_gain_is_relative, ...
+        true);
 end
 
-function PlotSpectAndEDCForConditions(read_dir, condition_indices, length_sec)
-    [passive_ir_base, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_1_1.wav");
-    [passive_ir_cond11, ~] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 4/E_1_1.wav");
-    [passive_ir_cond12, ~] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 5/E_1_1.wav");
+%% Figure 11 (absorption EDC demo)
+plot_length_sec = 4;
+room_conditions = [1,12]; % % % % % This needs changing to 1:2 after renaming the room conditions
+aaes_conditions = 9:12;
+aaes_plot_index = 1;
+line_styles = ["-", ":"];
 
-    for condition = condition_indices
-        [ir, ~] = audioread(read_dir + "AAES Condition " + condition + "/ReceiverRIR.wav");
-        PlotSpectrogram(ir,fs,length_sec);
-        title("Condition " + condition);
-
-        nexttile
-        if condition == 11
-            PlotEDC(passive_ir_cond11, fs, false, "--", length_sec, -70);
-        elseif condition == 12
-            PlotEDC(passive_ir_cond12, fs, false, "--", length_sec, -70);
-        else
-            PlotEDC(passive_ir_base, fs, false, "--", length_sec, -70);
-        end
-        hold on
-        PlotEDC(ir, fs, false, "-", length_sec, -70);
-        hold off
-        title("Condition " + condition);
-    end
-
-    PlotSpectrogram(passive_ir_base,fs,length_sec);
-    title("Passive Room (base absorption)");
-end
-
-function PlotAllSpectrograms()
-    num_channels_set = [8 12 16];
-    room_nums = [1 2 3];
-    alpha_sets = [1 2 3];
-    rt_factors = [0 0.5 1 2 4];
-    loop_gain_biases_dB = [0 -2 -4 -6];
-
-    % 3 parameters by 3^3 combinations
-    combined_param_map = GenerateCombinedParamMap(num_channels_set, room_nums, alpha_sets);
-    
-    for combined_index = 1:size(combined_param_map, 2)
-        num_channels = combined_param_map(1, combined_index);
-        room_num = combined_param_map(2, combined_index);
-        alpha_set = combined_param_map(3, combined_index);
-    
-        for rt_factor_index = 1:size(rt_factors, 2)
-            rt_factor = rt_factors(rt_factor_index);
-
-            fig = figure("Visible","off");
-
-            loop_gain_bias_dB = 0;
-
-            [ir, fs] = audioread("AAES Modelled IRs KT/ReverberatorRTFactor["+rt_factor+"]_LoopGain["+loop_gain_bias_dB+"].wav");
-            PlotSpectrogram(ir, fs, 6);
-            title("Modelled");
-
-            if rt_factor == 0.5
-                rt_factor = "0_5";
-            end
-
-            [ir, fs] = audioread("../../Kentish Town Lab RIRs 20240215/Best Measurements/RT"+rt_factor+"LG0.wav");
-            PlotSpectrogram(ir, fs, 6);
-            title("Measured");
-
-            saveas(fig, "Plots/KT Spectrograms/Kentish Town AAES Modelled vs Measured RTFactor["+rt_factor+"]","png");
-        end
-    end
-end
-
-function PlotHeatmapForRouting(routing_dir, num_rows, num_cols, convert_to_dB)
+for subplot_index = 1:2
     nexttile
-
-    routing = readmatrix(routing_dir);% zeros(num_rows, num_cols);
-
-    % for row = 1:num_rows
-    %     for col = 1:num_cols
-    %         [routing(row, col), ~] = audioread(routing_dir + "X_R"+row+"_S"+col+".wav");
-    %     end
-    % end
-
-    if (convert_to_dB)
-        if ~isempty(find(routing == 0))
-            routing(find(routing == 0)) = 0.001;
-        end
-
-        routing = 20 * log10(abs(routing));
-    end
-
-    heatmap(routing, "Colormap", parula, "CellLabelColor", "none");
-
-    if (convert_to_dB)
-        title("Routing Matrix Magnitude / dB");
-    else
-        title("Routing Matrix Gain");
-    end
-
-    xlabel("Microphones");
-    ylabel("Loudspeakers");
-
-    if (convert_to_dB)
-        clim([-60 0]);
-    else
-        clim([-1 1]);
-    end
-end
-
-function PlotAllEDCs(octave_centre_f)
-    oct_filt = octaveFilter;
-
-    if exist('octave_centre_f','var')
-        oct_filt = octaveFilter(octave_centre_f);
-    end
-
-    num_channels_set = [8 12 16];
-    room_nums = [1 2 3];
-    alpha_sets = [1 2 3];
-    rt_factors = [0 0.5 1 2 4];
-    loop_gain_biases_dB = [0 -2 -4 -6];
-    
-    % 3 parameters by 3^3 combinations
-    combined_param_map = GenerateCombinedParamMap(num_channels_set, room_nums, alpha_sets);
-    
-    for combined_index = 1:size(combined_param_map, 2)
-        num_channels = combined_param_map(1, combined_index);
-        room_num = combined_param_map(2, combined_index);
-        alpha_set = combined_param_map(3, combined_index);
-    
-        [ir_example, fs] = audioread("AAES Pink Model Data/AAES Modelled IRs/Ch["+num_channels+"] Room["+room_num+"] AlphaSet["+alpha_set+"]/ReverberatorRTFactor[4]_LoopGain[0].wav");
-
-        if exist('octave_centre_f','var')
-            ir_example = oct_filt(ir_example);
-        end
-
-        room_case_max_ir_length_sec = size(ir_example,1) / fs;
-
-        for rt_factor_index = 1:size(rt_factors, 2)
-            rt_factor = rt_factors(rt_factor_index);
-
-            fig = figure("Visible","off");
-            hold on
-
-            legend_cells = cell(size(loop_gain_biases_dB,2));
-
-            for loop_gain_index = 1:size(loop_gain_biases_dB, 2)
-                loop_gain_bias_dB = loop_gain_biases_dB(loop_gain_index);
-
-                [ir, fs] = audioread("AAES Pink Model Data/AAES Modelled IRs/Ch["+num_channels+"] Room["+room_num+"] AlphaSet["+alpha_set+"]/ReverberatorRTFactor["+rt_factor+"]_LoopGain["+loop_gain_bias_dB+"].wav");
-
-                if exist('octave_centre_f','var')
-                    ir = oct_filt(ir);
-                end
-
-                PlotEDC(ir, fs, "-", room_case_max_ir_length_sec);
-
-                legend_cells{loop_gain_index} = "LoopGain["+loop_gain_bias_dB+"]";
-            end
-
-            [ir, fs] = audioread("AAES Pink Model Data/AAES Modelled IRs/Ch["+num_channels+"] Room["+room_num+"] AlphaSet["+alpha_set+"]/E_1_1.wav");
-
-            if exist('octave_centre_f','var')
-                ir = oct_filt(ir);
-            end
-
-            PlotEDC(ir, fs, "--", room_case_max_ir_length_sec);
-
-            legend_cells = resize(legend_cells,[size(loop_gain_biases_dB,2) + 1, 1]);
-            legend_cells{size(loop_gain_biases_dB,2) + 1} = "Passive Room";
-            legend(legend_cells);
-
-            if rt_factor == 0.5
-                rt_factor = "0_5";
-            end
-
-            saveas(fig, "AAES Pink Model Data/Plots/1kHz EDCs/AAES Model EDCs Ch["+num_channels+"] Room["+room_num+"] AlphaSet["+alpha_set+"] RTFactor["+rt_factor+"]","png");
-        end
-    end
-end
-
-function PlotMatrixDRR(read_dir, matrix_prefix, num_rows, num_cols, plot_title, src_rec_delay_matrix)
-    nexttile
-    
-    if ~exist("src_rec_delay_matrix", "var")
-        [matrix_drr, delay_matrix] = GetMatrixDRR(read_dir, ...
-                                matrix_prefix, ...
-                                num_rows, ...
-                                num_cols);
-    else
-        [matrix_drr, ~] = GetMatrixDRR(read_dir, ...
-                                matrix_prefix, ...
-                                num_rows, ...
-                                num_cols, ...
-                                [], ...
-                                src_rec_delay_matrix);
-    end
-
-    heatmap(matrix_drr, "Colormap", parula, "CellLabelColor", "none");
-
-    clim([-60, 0]);
-
-    xlabel("Microphones");
-    ylabel("Loudspeakers");
-
-    title(plot_title);
-end
-
-function PlotRTOverFrequency(ir, fs, bandwidth_mode, y_limit_sec)
-    if bandwidth_mode == "1 octave"
-        num_bands = 10;    
-    elseif bandwidth_mode == "1/3 octave"
-        num_bands = 30;
-    elseif bandwidth_mode == "1/6 octave"
-        num_bands = 60;
-    elseif bandwidth_mode == "1/12 octave"
-        num_bands = 120;
-    end
-
-    band_centres = 2 * logspace(1, 4, num_bands);
-    t30s = zeros(num_bands, 1);
-
-    for band_index = 1:num_bands
-        band_centre = band_centres(band_index);
-        t30s(band_index) = FindT30(ir,fs,band_centre,bandwidth_mode);
-    end
-
-    semilogx(band_centres, t30s, "LineWidth", 1.5);
-    set(gca,'fontsize', 15);
-    title("Title","FontSize",16,"FontWeight","normal");
-    xlabel("Frequency / Hz");
-    ylabel("$T_{30}$ / s","Interpreter","latex");
-    xlim([20 20000]);
-    ylim([0 3.5]);
-    xticks([20 200 2000 20000]);
-    xticklabels(["20", "200", "2k", "20k"]);
-    grid on
     hold on
+    room_index = room_conditions(subplot_index);
+    [ir, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition "+room_index+"/E_R1_S1.wav");
+    PlotEDC(ir, fs, false, "--", plot_length_sec);
+
+    for plot_index = 1:2
+        aaes_index = aaes_conditions(aaes_plot_index);
+        [ir, ~] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
+        PlotEDC(ir, fs, false, line_styles(plot_index), plot_length_sec);
+        aaes_plot_index = aaes_plot_index + 1;
+    end
+end
+
+SetFigureSize("double_vertical")
+
+%% Figure 12 (absorption colouration demo)
+hold on
+aaes_conditions = [13:31; 32:50];
+loop_gains = -6:0.25:-1.5;
+
+for plot_index = 1:2
+    colouration_values = zeros(length(loop_gains), 1);
+    colouration_index = 1;
+    for aaes_index = aaes_conditions(plot_index, :)
+        [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
+        colouration_values(colouration_index) = GetColouration(ir,fs,NFFT=2^19);
+        colouration_index = colouration_index + 1;
+    end
+
+    plot(loop_gains, colouration_values);
+end
+
+legend(["Base", "-50%"])
+SetFigureSize("single")
+
+%% Figure 13 (directivity demo - DRR heatmaps and spectrograms)
+
+% This estimates the time-of-flight delay between each source and receiver
+% in the "H" (feedback) matrix, based on the maximum absolute value of each
+% IR in the omni condition. This is then used to determine the DRR of the
+% cardioid condition, since the direct signal will be attenuated so the max
+% may not indicate the location of the direct signal.
+[~, delay_matrix] = GetMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/", "H", 8, 8);
+
+PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 10/", "H", 8, 8, "Omni Mics");
+PlotMatrixDRR("Active Acoustics Review/Generated AAES RIRs/Room Condition 9/", "H", 8, 8, "Cardioid Mics", delay_matrix);
+SetFigureSize("double_horizontal")
+
+figure
+for aaes_index = [52, 51]
+    [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
+    PlotSpectrogram(ir,fs,2,true)
+end
+
+SetFigureSize("double_vertical")
+
+function PlotT30Line(ir, fs)
+    hold on
+    rt = FindT30(ir, fs);
+    semilogy([rt rt], [0.02 20], "LineStyle", "--", "LineWidth", 1, "Color", "white");
+end
+
+function SetFigureSize(mode)
+    if mode == "single"
+        set(gcf, "position", [300 300 600 300]);
+    elseif mode == "double_horizontal"
+        set(gcf,'position',[300,300,1000,400]);
+    elseif mode == "triple_vertical"
+        set(gcf, "position", [300 0 650 800]);
+    elseif mode == "double_vertical"
+        set(gcf, "position", [300 0 650 500]);
+    elseif mode == "triple_horizontal"
+        set(gcf, "position", [300 0 1120 300]);
+    end
 end

@@ -46,7 +46,6 @@ function integrated_values_dB = PlotEDC(ir, sample_rate, octave_band_centre, lin
     title("Energy Decay Curve","FontSize",16,"FontWeight","normal");
     xlabel("Time (s)");
     ylabel("Energy (dB)");
-    set(gcf,'position',[400,2000,500,300]);
     ylim([y_min 0]);
     grid on
 

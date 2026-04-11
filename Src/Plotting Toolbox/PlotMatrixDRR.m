@@ -1,0 +1,26 @@
+function PlotMatrixDRR(read_dir, matrix_prefix, num_rows, num_cols, plot_title, src_rec_delay_matrix)
+    nexttile
+    
+    if ~exist("src_rec_delay_matrix", "var")
+        [matrix_drr, ~] = GetMatrixDRR(read_dir, ...
+                                matrix_prefix, ...
+                                num_rows, ...
+                                num_cols);
+    else
+        [matrix_drr, ~] = GetMatrixDRR(read_dir, ...
+                                matrix_prefix, ...
+                                num_rows, ...
+                                num_cols, ...
+                                [], ...
+                                src_rec_delay_matrix);
+    end
+
+    heatmap(matrix_drr, "Colormap", parula, "CellLabelColor", "none");
+
+    clim([-60, 0]);
+
+    xlabel("Microphones");
+    ylabel("Loudspeakers");
+
+    title(plot_title);
+end

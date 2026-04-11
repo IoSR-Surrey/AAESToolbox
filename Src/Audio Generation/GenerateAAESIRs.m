@@ -13,15 +13,15 @@ function GenerateAAESIRs(rir_directory, ...
                          bit_depth, ...
                          should_normalise, ...
                          loop_gain_is_relative_to_gbi, ...
-                         plot_eigenvalues, ...
+                         plot_eigenvalues_and_exit, ...
                          mic_ls_routing)
 
     if ~exist("loop_gain_is_relative_to_gbi", "var")
         loop_gain_is_relative_to_gbi = true;
     end
 
-    if ~exist("plot_eigenvalues", "var")
-        plot_eigenvalues = false;
+    if ~exist("plot_eigenvalues_and_exit", "var")
+        plot_eigenvalues_and_exit = false;
     end
 
     %% Internal parameters
@@ -75,8 +75,9 @@ function GenerateAAESIRs(rir_directory, ...
         feedback_loop(:,:,bin) = X(:,:,bin) * H(:,:,bin);
     end
     
-    if plot_eigenvalues
+    if plot_eigenvalues_and_exit
         PlotEigenvalues(feedback_loop, 48000, false);
+        return
     end
 
     if loop_gain_is_relative_to_gbi
