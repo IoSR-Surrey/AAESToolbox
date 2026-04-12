@@ -1,4 +1,5 @@
 clear
+close all
 
 %% Figure 7 (loop gain demo)
 [ir_passive, fs] = audioread("Active Acoustics Review/Generated AAES RIRs/Room Condition 1/E_R1_S1.wav");
@@ -33,6 +34,15 @@ for plot_index = 1:5
 end
 
 %% Figure 9 (time variation demo)
+plot_length_sec = 4;
+
+for aaes_index = 53:55
+    [ir, fs] = audioread("Active Acoustics Review/AAES Receiver RIRs/aaes_condition_"+aaes_index+".wav");
+    PlotSpectrogram(ir,fs,plot_length_sec,true);
+    PlotT30Line(ir, fs)
+end
+
+SetFigureSize("triple_vertical")
 
 %% Figure 10 (EQ demo with eigenvalues)
 figure

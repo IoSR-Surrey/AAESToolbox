@@ -96,14 +96,14 @@ classdef AAESTimeDomain < handle
             for f = 1:obj.nfft
                 eigenvalues(f,:) = eig(permute(open_loop_TFs(f,:,:), [2,3,1]));
             end
-            GBI = 1/max(abs(eigenvalues),[],'all');
+            GBI = 1/max(real(eigenvalues),[],'all');
             disp(strcat(['The current GBI is: ', sprintf('%0.1f',(mag2db(GBI)))]));
         end
 
         function FDN_irs = computeFDNirs(obj)
 
             % Define length of the FDN irs based on the FDN RT
-            sigLength = obj.FDN.RT * obj.fs;
+            sigLength = floor(obj.FDN.RT * obj.fs);
             
             % Allocate memory
             FDN_irs = zeros(sigLength, obj.numLds, obj.numMics);
