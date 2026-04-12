@@ -149,14 +149,14 @@ end
 
 function SetFigureSize(mode)
     if mode == "single"
-        set(gcf, "position", [300 300 600 300]);
+        set(gcf, "position", [100 100 600 300]);
     elseif mode == "double_horizontal"
-        set(gcf,'position',[300,300,1000,400]);
+        set(gcf,'position',[100,100,1000,400]);
     elseif mode == "triple_vertical"
-        set(gcf, "position", [300 0 650 800]);
+        set(gcf, "position", [100 100 650 800]);
     elseif mode == "double_vertical"
-        set(gcf, "position", [300 0 650 500]);
+        set(gcf, "position", [100 100 650 500]);
     elseif mode == "triple_horizontal"
-        set(gcf, "position", [300 0 1120 300]);
+        set(gcf, "position", [100 100 1120 300]);
     end
 end
