@@ -40,6 +40,6 @@ This table presents the arguments for each time domain simulation, allowing time
 
 | Fig. | RIR Set Index | AAES Index | Num Mics | Num LS | Absorption | Reverberator | Loop Gain | EQ |
 |------|---------------|------------|----------|--------|------------|--------------|-----------|----|
-| 9 | 5 | 53 | 4 | 16 | Base | LTI FDN; RT Ratio = 2.0 | -6.5 dB (-36.8 dBFS) | None |
-| 9 | 5 | 54 | 4 | 16 | Base | LTV FDN; RT Ratio = 2.0 | -36.8 dBFS | None |
-| 9 | 5 | 55 | 4 | 16 | Base | LTV FDN; RT Ratio = 2.0 | -3 dB | None |
+| 9 | 5 | 53 | 4 | 16 | Base | LTI FDN; RT Ratio = 2.0 | -6.5 dB (-36.1 dBFS) | None |
+| 9 | 5 | 54 | 4 | 16 | Base | LTV FDN; RT Ratio = 2.0 | -36.1 dBFS | None |
+| 9 | 5 | 55 | 4 | 16 | Base | LTV FDN; RT Ratio = 2.0 | -3.5 dB | None |
