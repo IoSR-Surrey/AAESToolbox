@@ -23,7 +23,7 @@ This table presents the arguments for each time-invariant simulation, using the 
 | 8 | 1 | 4 | 16 | 16 | Base | 3: LTI FDN; RT Ratio = 1.0 | -68 dBFS | None |
 | 8 | 1 | 5 | 16 | 16 | Base | 4: LTI FDN; RT Ratio = 1.5 | -68 dBFS | None |
 | 8 | 1 | 6 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 2.0 | -68 dBFS | None |
-| 10 | 5 (1 with EQ) | 7 | 16 | 16 | Base | 1: Identity | -5 dB | Two biquads on each feedback element |
+| 10 | 5 (1 with EQ) | 7 | 16 | 16 | Base | 1: Identity | -34.2 dBFS | Two biquads on each feedback element |
 | 10 | 5 (1 with EQ) | 8 | 16 | 16 | Base | 1: Identity | -2 dB | Two biquads on each feedback element |
 | 11 | 1 | 9 | 16 | 16 | Base | 6: Hadamard | -5 dB | None |
 | 11 | 1 | 10 | 16 | 16 | Base | 5: LTI FDN; RT Ratio = 2.0 | -5 dB | None |
