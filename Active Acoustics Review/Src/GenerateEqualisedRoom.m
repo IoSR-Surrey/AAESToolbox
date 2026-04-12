@@ -4,7 +4,7 @@
 % https://www.earlevel.com/main/2021/09/02/biquad-calculator-v3/
 
 read_dir = "Active Acoustics Review/Generated AAES RIRs/Room Condition 1/";
-write_dir = "Active Acoustics Review/Generated AAES RIRs/Room Condition 5/";
+write_dir = "Active Acoustics Review/Generated AAES RIRs/Room Condition 6/";
 num_rows = 16;
 num_cols = 16;
 CopyRoomAndEqualise(read_dir, write_dir, num_rows, num_cols);

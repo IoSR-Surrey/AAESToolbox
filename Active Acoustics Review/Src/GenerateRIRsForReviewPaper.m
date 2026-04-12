@@ -18,9 +18,9 @@ rotations_dir = "Active Acoustics Review/Room Simulation Parameters/Rotations/";
 directivities_dir = "Active Acoustics Review/Room Simulation Parameters/Directivities/";
 output_dir = "Active Acoustics Review/Generated AAES RIRs/";
 
-% Room Condition 5 is 1 with EQ (use GenerateEqualisedRoom.m after running
+% Room Condition 6 is 1 with EQ (use GenerateEqualisedRoom.m after running
 % this script)
-for rir_set_index = 1
+for rir_set_index = 1:5
     GenerateRIRs(rir_set_index, absorptions_dir, coords_dir, rotations_dir, directivities_dir, output_dir, sample_rate, bit_depth);
 end
 
