@@ -1,5 +1,8 @@
-% This script generates AAES IRs for a set of rooms with varying
-% dimensions, absorption coefficients and AAES channel counts.
+% This script generates all RIRs required to compute the AAES model
+% described by Eq. (4) in "Active Acoustic Enhancement Systems - A Review".
+% Shoebox dimensions, absorption coefficients and AAES channel counts.
+% Please ensure the following AKtools fork is installed and added to
+% MATLAB's working path: https://github.com/wjcassidy/AKtools-FreqIndepSH
 
 % close all
 
@@ -9,15 +12,15 @@
 sample_rate = 48000;
 bit_depth = 32;
 
-absorptions_dir = "Active Acoustics Review/Absorption Coefficients/";
-coords_dir = "Active Acoustics Review/Coordinates/";
-rotations_dir = "Active Acoustics Review/Rotations/";
-directivities_dir = "Active Acoustics Review/Directivities/";
+absorptions_dir = "Active Acoustics Review/Room Simulation Parameters/Absorption Coefficients/";
+coords_dir = "Active Acoustics Review/Room Simulation Parameters/Coordinates/";
+rotations_dir = "Active Acoustics Review/Room Simulation Parameters/Rotations/";
+directivities_dir = "Active Acoustics Review/Room Simulation Parameters/Directivities/";
 output_dir = "Active Acoustics Review/Generated AAES RIRs/";
 
-num_conditions = 4; % condition 5 is 1 with EQ
-
-parfor rir_set_index = 1:4
+% Room Condition 5 is 1 with EQ (use GenerateEqualisedRoom.m after running
+% this script)
+for rir_set_index = 1
     GenerateRIRs(rir_set_index, absorptions_dir, coords_dir, rotations_dir, directivities_dir, output_dir, sample_rate, bit_depth);
 end
 
@@ -26,7 +29,7 @@ delete(gcp('nocreate'));
 %% Generation
 
 function GenerateRIRs(rir_set_index, absorptions_dir, coords_dir, rotations_dir, directivities_dir, output_dir, sample_rate, bit_depth)
-    room_dims = readmatrix("Active Acoustics Review/Room Dimensions/room_dimensions.dat");
+    room_dims = readmatrix("Active Acoustics Review/Room Simulation Parameters/Room Dimensions/room_dimensions.dat");
     alphas = readmatrix(absorptions_dir + "absorption_coeffs_"+rir_set_index+".dat");
     
     src_coords = readmatrix(coords_dir + "src_coords.dat");
