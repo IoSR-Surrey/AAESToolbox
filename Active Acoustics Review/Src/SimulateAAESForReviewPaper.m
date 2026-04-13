@@ -1,9 +1,10 @@
 
 rir_base_dir = "Active Acoustics Review/Generated AAES RIRs/";
-reverberator_base_dir = "Active Acoustics Review/Reverberators/";
 output_base_dir = "Active Acoustics Review/AAES Receiver RIRs/";
 bit_depth = 32;
 
+%% Frequency-domain simulations
+reverberator_base_dir = "Active Acoustics Review/Reverberators/";
 conditions = readmatrix("Active Acoustics Review/Src/SimulationConditions.dat");
 conditions_to_simulate = 1:size(conditions, 1);
 
@@ -14,12 +15,6 @@ for aaes_index = conditions_to_simulate
     rev_index = conditions(aaes_index, 4);
     loop_gain = conditions(aaes_index, 5);
     loop_gain_is_relative = conditions(aaes_index, 6);
-
-    if loop_gain_is_relative
-        loop_gain_label = "(rel)";
-    else
-        loop_gain_label = "(abs)";
-    end
 
     GenerateAAESIRs(rir_base_dir + "Room Condition " + rir_set_index + "/", ...
         reverberator_base_dir + "Reverberator " + rev_index + "/", ...
