@@ -1,29 +1,15 @@
-%
+
 % This function returns the available gain before instability of the feedback
-% matrix A in decibels.
-%
-% Negative output indicates input is unstable
-%
-% This may be conservative since it only c0nsiders the magnitude of the
-% eigenvalues
+% matrix A in decibels, where a negative output indicates the input is
+% unstable in its current state.
 %
 % Input:
-% A is a 3D tensor with dimensions (num_inputs x num_outputs x num_bins)
-% where num_inputs = num_outputs
-%
-function gbi_dB = FindWorstCaseGBI(A)
-    num_bins = size(A,3);
+% open_loop_matrix : (num_inputs x num_outputs x num_bins) where num_inputs
+% = num_outputs
 
-    all_channel_eigenvalues = zeros(round(num_bins/2),1);
-    
-    % num_bins / 2 used to discard symmetry
-    for bin = 1:round(num_bins/2)
-        all_channel_eigenvalues(bin) = max(real(eig(A(:,:,bin))), [], "all");
-    end
+function gbi_dB = FindWorstCaseGBI(open_loop_matrix)
+    eigenvalues = pageeig(open_loop_matrix);
 
-    % figure
-    % hold on
-    % semilogx(all_channel_eigenvalues);
-
-    gbi_dB = -20 * log10(max(all_channel_eigenvalues,[],"all"));
+    gbi = max(real(eigenvalues),[],"all");
+    gbi_dB = -20 * log10(gbi);
 end

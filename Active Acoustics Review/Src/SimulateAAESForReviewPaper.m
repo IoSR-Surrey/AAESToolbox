@@ -5,7 +5,7 @@ bit_depth = 32;
 
 %% Frequency-domain simulations
 reverberator_base_dir = "Active Acoustics Review/Reverberators/";
-conditions = readmatrix("Active Acoustics Review/Src/SimulationConditions.dat");
+conditions = readmatrix("Active Acoustics Review/Room Simulation Parameters/SimulationConditions.dat");
 conditions_to_simulate = 1:size(conditions, 1);
 
 for aaes_index = conditions_to_simulate

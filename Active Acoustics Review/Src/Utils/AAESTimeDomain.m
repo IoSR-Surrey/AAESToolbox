@@ -88,14 +88,13 @@ classdef AAESTimeDomain < handle
         % Gain before instability estimation
         function GBI = estimateGBI(obj)
             FDN_irs = obj.computeFDNirs();
-            open_loop_TFs = matrix_product( fft(obj.H_LM, obj.nfft, 1), fft(FDN_irs, obj.nfft, 1) );
+            open_loop_TFs = matrix_product(fft(obj.H_LM, obj.nfft, 1), ...
+                                           fft(FDN_irs, obj.nfft, 1));
+
+            eigenvalues = pageeig(permute(open_loop_TFs, [2,3,1]));
 
             % PlotEigenvalues(open_loop_TFs, obj.fs, true);
 
-            eigenvalues = zeros(obj.nfft, obj.numMics);
-            for f = 1:obj.nfft
-                eigenvalues(f,:) = eig(permute(open_loop_TFs(f,:,:), [2,3,1]));
-            end
             GBI = 1/max(real(eigenvalues),[],'all');
             disp(strcat(['The current GBI is: ', sprintf('%0.1f',(mag2db(GBI)))]));
         end
