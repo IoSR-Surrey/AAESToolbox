@@ -8,7 +8,7 @@ The general pipeline is as follows:
 - Run ```GenerateRIRsForReviewPaper.m``` to generate an RIR for every loudspeaker-microphone pair, including room sources and audience receivers. Requires an AKtools fork as mentioned above.
 - Run ```GenerateEqualisedRoom.m``` to apply equalisation to the H matrix of Room Condition 1 (becomes Room Condition 6).
 - Run ```SimulateAAESForReviewPaper.m``` to simulate each AAES condition, saving the results into ```AAES Receiver RIRs/```.
-- Use ```AAESToolbox/Src/Plotting Toolbox/PlotRIR.m``` to reproduce the figures of the review paper, or explore the other plotting tools found in ```AAESToolbox/Src/Plotting Toolbox/```.
+- Call ```PlotReviewFigure(figure_number)``` from the command window to plot the review paper figures, or explore the other plotting tools found in ```AAESToolbox/Src/Plotting Toolbox/```.
 
 ```GenerateRIRsForReviewPaper.m``` and ```SimulateAAESForReviewPaper.m``` refer to an ```rir_set_index``` and ```aaes_index```, respectively. Table 1 (below) details the parameter arguments for these conditions.
 
