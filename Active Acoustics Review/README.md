@@ -1,5 +1,5 @@
 # Active Acoustics Review Simulations
-This directory provides the means to reproduce the AAES simulations featured in the review paper "Active Acoustic Enhancement Systems - A Review" (link to follow). Due to the large amount of data, intermediate audio files have not been included in this repository, but these can be generated locally using the workflow detailed below.
+This directory provides the means to reproduce the AAES simulations featured in the review article [Active acoustic enhancement systems: A review](https://pubs.aip.org/asa/jasa/article/159/4/3533/3387630/Active-acoustic-enhancement-systems-A-review). Due to the large amount of data, intermediate audio files have not been included in this repository, but these can be generated locally using the workflow detailed below.
 
 Requires [this fork](https://github.com/willcassidy00454/AKtools-FreqIndepSH) of AKtools to handle directional sources/receivers, and the [fdnToolbox](https://github.com/SebastianJiroSchlecht/fdnToolbox) for generating reverberators.
 
